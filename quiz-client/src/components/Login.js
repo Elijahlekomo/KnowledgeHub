@@ -1,6 +1,7 @@
 import { Box, Button, Card, CardContent, TextField, Typography } from "@mui/material";
 import Center from "./Center";
 import useForm from "../hooks/useForm";
+import { ENDPOINTS, createAPIEndpoint } from "../api/index.js";
 
 
 const getFreshModel = () => ({
@@ -21,15 +22,18 @@ const {
 const login = e =>{
   e.preventDefault();
   if(validate())
-    console.log(values);
+      createAPIEndpoint(ENDPOINTS.participant)
+          .post(values)
+          .then(res => console.log(res))
+          .catch(err => console.log(err))
 }
 
 const validate =  () => {
   let temp = {}
   temp.email = (/\S+@\S+\.\S+/).test(values.email)? "" : "Email is not valid."
-  temp.name = values.name != ""?"" : "This field is required."
+  temp.name = values.name !== ""?"" : "This field is required."
   setErrors(temp)
-  return Object.values(temp).every(x => x == "")
+  return Object.values(temp).every(x => x === "")
 }
 
   return (
@@ -47,7 +51,7 @@ const validate =  () => {
               },
             }}
           >
-            <form noValidate autoComplete="off" onSubmit={login}>
+            <form noValidate autoComplete="on" onSubmit={login}>
               <TextField 
                   label="Email" 
                   name="email" 
