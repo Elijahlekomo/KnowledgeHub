@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -44,12 +45,17 @@ namespace QuizAPI.Controllers
         // PUT: api/Participant/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutParticipant(int id, Participant participant)
+        public async Task<IActionResult> PutParticipant(int id, ParticipantRestult _participantResult)
         {
-            if (id != participant.ParticipantId)
+            if (id != _participantResult.ParticipantId)
             {
                 return BadRequest();
             }
+
+            // get all current details of the record, then update with quiz results
+            Participant participant = _context.Participants.Find(id);
+            participant.Score = _participantResult.Score;
+            participant.TimeTaken = _participantResult.TimeTaken;
 
             _context.Entry(participant).State = EntityState.Modified;
 
@@ -78,7 +84,7 @@ namespace QuizAPI.Controllers
         public async Task<ActionResult<Participant>> PostParticipant(Participant participant)
         {
             var temp = _context.Participants
-                .Where(x=> x.Name==participant.Name
+                .Where(x => x.Name == participant.Name
                 && x.Email == participant.Email)
                 .FirstOrDefault();
 

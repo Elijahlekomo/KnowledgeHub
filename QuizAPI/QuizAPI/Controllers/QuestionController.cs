@@ -24,7 +24,19 @@ namespace QuizAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Question>>> GetQuestions()
         {
-            return await _context.Questions.ToListAsync();
+            var random5Qns = await (_context.Questions
+                .Select(x => new
+                {
+                    QnId = x.QnId,
+                    QnInWords = x.QnInWords,
+                    ImageName = x.ImageName,
+                    Options = new string[] { x.Option1, x.Option2, x.Option3, x.Option4 }
+                })
+                .OrderBy(y => Guid.NewGuid().ToString())
+                .Take(5)
+                ).ToListAsync();
+
+            return Ok(random5Qns);
         }
 
         // GET: api/Question/5
@@ -72,15 +84,25 @@ namespace QuizAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Question
+        // POST: api/Question/GetAnswers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Question>> PostQuestion(Question question)
+        [Route("GetAnswers")]
+        public async Task<ActionResult<Question>> RetrieveAnswers(int[] qnIds)
         {
-            _context.Questions.Add(question);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetQuestion", new { id = question.QnId }, question);
+          var answers = await(_context.Questions
+                .Where(x=>qnIds.Contains(x.QnId))  
+               .Select(y => new
+               {
+                   QnId = y.QnId,
+                   QnInWords = y.QnInWords,
+                   ImageName = y.ImageName,
+                   Options = new string[] { y.Option1, y.Option2, y.Option3, y.Option4 },
+                   Answer = y.Answer
+               })).ToListAsync();
+
+            return Ok(answers);
         }
 
         // DELETE: api/Question/5
