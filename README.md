@@ -1,2 +1,11 @@
 ## __About the project__  
-Built a Quiz App with React.js, ASP.NET Core API & Material UI
+Quiz App
+
+Built project with:   
+ - C#
+ - SQL
+ - Visual Studio
+ - APS.net core MVC
+ - ASP.NET Core API
+ -  React.js
+ - Material UI
