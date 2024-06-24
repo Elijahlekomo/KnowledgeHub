@@ -16,10 +16,10 @@ Built project with:
 ## Screenshot of the project     
  __Sign In Page__       
 
-<img width="960" alt="Webportfolioimg" src="https://github.com/Elijahlekomo/KnowledgeHub/blob/main/SQLQuery1.sql">
+<img width="960" alt="Sign in Screeenshot" src="https://github.com/Elijahlekomo/KnowledgeHub/blob/main/Sign%20in.png">
 
  __Quiz Application Page__  
 
- <img width="960" alt="Webportfolioimg" src="https://github.com/Elijahlekomo/KnowledgeHub/blob/main/Sign%20in.png">
+ <img width="960" alt="Application Screenshot" src="https://github.com/Elijahlekomo/KnowledgeHub/blob/main/Quiz%20app.png">
 
 
