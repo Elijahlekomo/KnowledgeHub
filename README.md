@@ -1,5 +1,7 @@
 ## __About the project__  
-Quiz App
+Introducing KnowledgeHub, a cutting-edge quiz application designed to deliver an engaging and seamless quizzing experience.  
+
+Key Features:
 
 Built project with:   
  - C#
