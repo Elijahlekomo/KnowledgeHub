@@ -3,7 +3,7 @@ Introducing KnowledgeHub, a cutting-edge quiz application designed to deliver an
 
 __Key Features:__  
 - Dynamic User Interface: Developed using HTML, CSS, and JavaScript with React, KnowledgeHub offers a sleek, intuitive, and user-friendly interface. Users can easily navigate through quizzes, view their progress, and track their scores in real-time.
-- Powerful Back-End: The server-side is powered by C# and ASP.NET Core API, ensuring high performance, scalability, and security.
+- Powerful Back-End: The server-side is powered by C# and ASP.NET Core API, ensuring high performance, scalability, and securiyy.
 
 Built project with:   
  - C#
